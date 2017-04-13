@@ -14,7 +14,7 @@ $(document).ready(function () {
             console.log(Text);
             return Text
         };
-        this.cloze = function () {
+        this.back = function () {
             console.log(Cloze);
             return Cloze
         };
@@ -28,8 +28,9 @@ $(document).ready(function () {
             }
             return finalString.join("");
         };
-        this.partial = function () {
+        this.front = function () {
             console.log(Text.replace(Cloze, this.repeatChar("_")));
+            return (Text.replace(Cloze, this.repeatChar("_")));
         };
         this.oops = function () {
             if (!Text.includes(Cloze)) {
@@ -44,8 +45,8 @@ $(document).ready(function () {
     //Testing of ClozeCard
     var presidentCloze = new ClozeCard("A terrible president, Donald Trump, he is", "Obama");
     presidentCloze.oops();
-    presidentCloze.partial();
-    presidentCloze.cloze();
+    presidentCloze.back();
+    presidentCloze.front();
 
     //Actual Program
     var initialAction = $(".initialAction");
@@ -54,6 +55,7 @@ $(document).ready(function () {
     var clozeArray = [];
     var newBasicCard;
     var newClozeCard;
+    var cardSide;
 
     initialAction.on("click", function (event) {
         console.log(event);
@@ -84,13 +86,45 @@ $(document).ready(function () {
         console.log(basicArray);
         console.log(clozeArray);
         console.log(event);
-        $("button").on("click", "#startBTN", function (event) {
-            console.log(event);
-            $("#card-text").html(basicArray[0].front)
-        });
+        $("#firstInput").val("");
+        $("#secondInput").val("");
     });
 
     
     //Flashcard Applications
+    var i;
+    $("#startBTN").on("click", function (event) {
+        i = 0;
+        cardSide = "front";
+        startCards(basicArray, i);
+    });
+    $("#flipBTN").on("click", function (event) {
+        cardSide = flipCard(basicArray, i, cardSide);
+        cardSide;
+    });
+    $("#nextBTN").on("click", function (event) {
+        i++;
+        cardSide = "front";
+        startCards(basicArray, i);
+    });
 
+
+    function startCards(array, i) {
+        $("#card-text").html(array[i].front)
+    }
+    function flipCard(array, i, side) {
+    if(side === "front" || side == null){
+        $("#card-text").html(array[i].back)
+        side = "back";
+        return side;
+    }
+    else if (side === "back") {
+       console.log(side);
+       $("#card-text").html(array[i].front);
+       side = "front";
+       return side;
+    }
+}
 });
+
+
