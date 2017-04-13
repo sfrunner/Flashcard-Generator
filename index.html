@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Flashcard Generator</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="firstActiondd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Dropdown
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" id="firstActionddvalue" aria-labelledby="dropdownMenu1">
+                <li><a href="#" class="initialAction">Basic FlashCards</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#" class="initialAction">Cloze-Deleted FlashCards</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <form>
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon" for="firstInput"></span>
+                <input id="firstInput"type="text" class="form-control" aria-label="..." value="">
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-addon" for="secondInput"></span>
+                <input id="secondInput" type="text" class="form-control" aria-label="..." value="">
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+            </form>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-md-2">
+            <button id="initialSubmit" type="button" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button id="startBTN" type="button" class="btn btn-primary">Start FlashCards</button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-2">
+            <button id="next-btn" type="button" class="btn btn-primary">Next</button>
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-3" id="card-text">Hello, world!</h1>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="#" role="button" id="flipBTN">Flip</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="./Flashcards.js" type="text/javascript"></script>
+</body>
+</html>
