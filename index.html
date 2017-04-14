@@ -6,22 +6,29 @@
     <title>Flashcard Generator</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
 </head>
 <body>
     <div class="container-fluid">
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="firstActiondd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Dropdown
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" id="firstActionddvalue" aria-labelledby="dropdownMenu1">
-                <li><a href="#" class="initialAction">Basic FlashCards</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#" class="initialAction">Cloze-Deleted FlashCards</a></li>
-            </ul>
+        <div class="row">
+            <div class="col-md-10">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle btn-lg" type="button" id="firstActiondd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Card Type
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="firstActionddvalue" aria-labelledby="dropdownMenu1">
+                    <li><a href="#" class="initialAction">Basic FlashCards</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#" class="initialAction">Cloze-Deleted FlashCards</a></li>
+                </ul>
+            </div>
+            </div>
+            <div class="col-md-2">
+                <h3 id="card-selection"></h3>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -62,11 +69,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron">
-                <h1 class="display-3" id="card-text">Hello, world!</h1>
+                <h1 class="display-3" id="card-text">This is your Flashcard!</h1>
                 <p class="lead">
                     <a class="btn btn-primary btn-lg" href="#" role="button" id="flipBTN">Flip</a>
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Number of Basic Flashcards</h4>
+            <section id="number-basic"></section>
+        </div>
+        <div class="col-md-6">
+            <h4>Number of Cloze Flashcards</h4>
+            <section id="number-cloze"></section>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>

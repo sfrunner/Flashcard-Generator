@@ -20,33 +20,32 @@ $(document).ready(function () {
         };
 
         //Function will insert a breakpoint of string to show where text would usually be with a certain character matching the original lengh of the text removed
-        this.repeatChar = function (char) {
+
+        this.front = function () {
             var numChar = Cloze.length;
             var finalString = [];
             for (var i = 0; i < numChar; i++) {
-                finalString.push(char);
+                finalString.push("_");
             }
-            return finalString.join("");
-        };
-        this.front = function () {
-            console.log(Text.replace(Cloze, this.repeatChar("_")));
-            return (Text.replace(Cloze, this.repeatChar("_")));
+            console.log(Text.replace(Cloze, finalString.join("")));
+            return Text.replace(Cloze, finalString.join(""));
         };
         this.oops = function () {
             if (!Text.includes(Cloze)) {
                 console.log("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-            }
-            else {
-                console.log("There are no issues with your current setup.");
+                var newDialog = $("<dialog>");
+                newDialog.attr("id", "dialog-box");
+                newDialog.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
+                $(".jumbotron").prepend(newDialog);
+                newDialog.show();
+                setTimeout(function () {
+                    newDialog.hide();
+                    newDialog.empty();
+                }, 4000);
             }
         };
     }
 
-    //Testing of ClozeCard
-    var presidentCloze = new ClozeCard("A terrible president, Donald Trump, he is", "Obama");
-    presidentCloze.oops();
-    presidentCloze.back();
-    presidentCloze.front();
 
     //Actual Program
     var initialAction = $(".initialAction");
@@ -62,10 +61,12 @@ $(document).ready(function () {
         //console.log(initialAction.html());
         initialActionValue = event.target.innerHTML;
         if (initialActionValue === "Basic FlashCards") {
+            $("#card-selection").html("Basic FlashCards");
             $("span[for='firstInput']").html("Front Value");
             $("span[for='secondInput']").html("Back Value");
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
+            $("#card-selection").html("Cloze-Deleted FlashCards");
             $("span[for='firstInput']").html("Full Text");
             $("span[for='secondInput']").html("Value to Remove");
         }
@@ -81,31 +82,61 @@ $(document).ready(function () {
             basicArray.push(newBasicCard);
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
-            clozeArray.push(newClozeCard);
+            newClozeCard.oops();
+            if ($("#dialog-box").html() === "") {
+                clozeArray.push(newClozeCard);
+                console.log("good");
+            }
+            
         }
         console.log(basicArray);
         console.log(clozeArray);
         console.log(event);
         $("#firstInput").val("");
         $("#secondInput").val("");
+        $("#number-basic").html(basicArray.length);
+        $("#number-cloze").html(clozeArray.length);
     });
 
     
     //Flashcard Applications
     var i;
     $("#startBTN").on("click", function (event) {
-        i = 0;
-        cardSide = "front";
-        startCards(basicArray, i);
+        if (initialActionValue === "Basic FlashCards") {
+            i = 0;
+            cardSide = "front";
+            startCards(basicArray, i);
+        }
+        else if (initialActionValue === "Cloze-Deleted FlashCards") {
+            i = 0;
+            cardSide = "front";
+            startCards(clozeArray, i);
+        }
+        
     });
     $("#flipBTN").on("click", function (event) {
-        cardSide = flipCard(basicArray, i, cardSide);
-        cardSide;
+        if (initialActionValue === "Basic FlashCards") {
+            cardSide = flipCard(basicArray, i, cardSide);
+            cardSide;
+        }
+        else if (initialActionValue === "Cloze-Deleted FlashCards") {
+            cardSide = flipCard(clozeArray, i, cardSide);
+            cardSide;
+        }
+        
     });
     $("#nextBTN").on("click", function (event) {
-        i++;
-        cardSide = "front";
-        startCards(basicArray, i);
+        if (initialActionValue === "Basic FlashCards") {
+            i++;
+            cardSide = "front";
+            startCards(basicArray, i);
+        }
+        else if (initialActionValue === "Cloze-Deleted FlashCards") {
+            i++;
+            cardSide = "front";
+            startCards(clozeArray, i);
+        }
+        
     });
 
 
