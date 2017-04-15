@@ -27,11 +27,15 @@ $(document).ready(function () {
                 var newDialog = $("<dialog>");
                 newDialog.attr("id", "dialog-box");
                 newDialog.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-                $(".jumbotron").prepend(newDialog);
+                $("#flashcard-jumbo").append(newDialog);
+                $("#basic-section").hide();
+                $("#cloze-section").hide();
                 newDialog.show();
                 setTimeout(function () {
                     newDialog.hide();
                     newDialog.empty();
+                    $("#basic-section").show();
+                    $("#cloze-section").show();
                 }, 4000);
             }
         };
@@ -70,7 +74,7 @@ $(document).ready(function () {
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
             newClozeCard.oops();
-            if ($("#dialog-box").html() === "") {
+            if ($("#firstInput").val().trim().includes($("#secondInput").val().trim())) {
                 clozeArray.push(newClozeCard);
             }
         }
@@ -109,11 +113,19 @@ $(document).ready(function () {
     $("#nextBTN").on("click", function (event) {
         if (initialActionValue === "Basic FlashCards") {
             i++;
+            if (i >= basicArray.length) {
+                i = 0;
+            }
+            console.log(i);
             cardSide = "front";
             startCards(basicArray, i);
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
             i++;
+            if (i >= clozeArray.length) {
+                i = 0;
+            }
+            console.log(i);
             cardSide = "front";
             startCards(clozeArray, i);
         }
@@ -138,6 +150,7 @@ $(document).ready(function () {
             return side;
         }
     }
+
 });
 
 
