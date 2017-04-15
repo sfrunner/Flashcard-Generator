@@ -3,12 +3,6 @@ $(document).ready(function () {
         this.front = Front;
         this.back = Back;
     }
-    //Testing of BasicCard constructor
-    var president = new BasicCard("Who is the current President?", "Donald Trump");
-    console.log(president.front);
-    console.log(president.back);
-
-
     var ClozeCard = function (Text, Cloze) {
         this.fullText = function () {
             console.log(Text);
@@ -18,9 +12,6 @@ $(document).ready(function () {
             console.log(Cloze);
             return Cloze
         };
-
-        //Function will insert a breakpoint of string to show where text would usually be with a certain character matching the original lengh of the text removed
-
         this.front = function () {
             var numChar = Cloze.length;
             var finalString = [];
@@ -46,7 +37,6 @@ $(document).ready(function () {
         };
     }
 
-
     //Actual Program
     var initialAction = $(".initialAction");
     var initialActionValue;
@@ -57,8 +47,6 @@ $(document).ready(function () {
     var cardSide;
 
     initialAction.on("click", function (event) {
-        console.log(event);
-        //console.log(initialAction.html());
         initialActionValue = event.target.innerHTML;
         if (initialActionValue === "Basic FlashCards") {
             $("#card-selection").html("Basic FlashCards");
@@ -72,33 +60,26 @@ $(document).ready(function () {
         }
     });
 
-
     $("#submitBTN").on("click", function (event) {
+        //New methods to call on functions to create new cards
         newBasicCard = new BasicCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         newClozeCard = new ClozeCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         event.preventDefault();
         if (initialActionValue === "Basic FlashCards") {
-            console.log(newBasicCard.front);
             basicArray.push(newBasicCard);
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
             newClozeCard.oops();
             if ($("#dialog-box").html() === "") {
                 clozeArray.push(newClozeCard);
-                console.log("good");
             }
-            
         }
-        console.log(basicArray);
-        console.log(clozeArray);
-        console.log(event);
         $("#firstInput").val("");
         $("#secondInput").val("");
         $("#number-basic").html(basicArray.length);
         $("#number-cloze").html(clozeArray.length);
     });
 
-    
     //Flashcard Applications
     var i;
     $("#startBTN").on("click", function (event) {
@@ -112,8 +93,8 @@ $(document).ready(function () {
             cardSide = "front";
             startCards(clozeArray, i);
         }
-        
     });
+
     $("#flipBTN").on("click", function (event) {
         if (initialActionValue === "Basic FlashCards") {
             cardSide = flipCard(basicArray, i, cardSide);
@@ -123,8 +104,8 @@ $(document).ready(function () {
             cardSide = flipCard(clozeArray, i, cardSide);
             cardSide;
         }
-        
     });
+
     $("#nextBTN").on("click", function (event) {
         if (initialActionValue === "Basic FlashCards") {
             i++;
@@ -136,26 +117,27 @@ $(document).ready(function () {
             cardSide = "front";
             startCards(clozeArray, i);
         }
-        
     });
 
-
+    //Function for starting the Flashcards
     function startCards(array, i) {
         $("#card-text").html(array[i].front)
     }
+
+    //Function for Flip Cards
     function flipCard(array, i, side) {
-    if(side === "front" || side == null){
-        $("#card-text").html(array[i].back)
-        side = "back";
-        return side;
+        if(side === "front" || side == null){
+            $("#card-text").html(array[i].back)
+            side = "back";
+            return side;
+        }
+        else if (side === "back") {
+            console.log(side);
+            $("#card-text").html(array[i].front);
+            side = "front";
+            return side;
+        }
     }
-    else if (side === "back") {
-       console.log(side);
-       $("#card-text").html(array[i].front);
-       side = "front";
-       return side;
-    }
-}
 });
 
 
