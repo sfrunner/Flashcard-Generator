@@ -42,3 +42,20 @@
     position:relative;
     z-index:1;
 }
+
+@media only screen and (max-width: 400px) {
+    /* For mobile phones: */
+
+#startBTN{
+   font-size:10px;
+}
+
+#nextBTN{
+   font-size:10px;
+}
+
+#submitBTN{
+   font-size:10px;
+}
+
+}

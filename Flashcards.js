@@ -1,44 +1,56 @@
 $(document).ready(function () {
     var BasicCard = function (Front, Back) {
-        this.front = Front;
-        this.back = Back;
+        //scope-safe construction
+        if(this instanceof BasicCard){
+            this.front = Front;
+            this.back = Back;  
+        }
+        else{
+            return new BasicCard(Front,Back);
+        }
     }
     var ClozeCard = function (Text, Cloze) {
-        this.fullText = function () {
-            console.log(Text);
-            return Text
-        };
-        this.back = function () {
-            console.log(Cloze);
-            return Cloze
-        };
-        this.front = function () {
-            var numChar = Cloze.length;
-            var finalString = [];
-            for (var i = 0; i < numChar; i++) {
-                finalString.push("_");
-            }
-            console.log(Text.replace(Cloze, finalString.join("")));
-            return Text.replace(Cloze, finalString.join(""));
-        };
-        this.oops = function () {
-            if (!Text.includes(Cloze)) {
-                console.log("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-                var newDialogOOPS = $("<dialog>");
-                newDialogOOPS.attr("class", "dialog-box");
-                newDialogOOPS.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-                $("#flashcard-jumbo").append(newDialogOOPS);
-                $("#basic-section").hide();
-                $("#cloze-section").hide();
-                newDialogOOPS.show();
-                setTimeout(function () {
-                    newDialogOOPS.hide();
-                    newDialogOOPS.empty();
-                    $("#basic-section").show();
-                    $("#cloze-section").show();
-                }, 4000);
-            }
-        };
+        //scope-safe construction
+        if(this instanceof ClozeCard){
+            this.fullText = function () {
+                console.log(Text);
+                return Text
+            };
+            this.back = function () {
+                console.log(Cloze);
+                return Cloze
+            };
+            this.front = function () {
+                var numChar = Cloze.length;
+                var finalString = [];
+                for (var i = 0; i < numChar; i++) {
+                    finalString.push("_");
+                }
+                console.log(Text.replace(new RegExp(Cloze, "g"), finalString.join("")));
+                return Text.replace(new RegExp(Cloze, "g"), finalString.join(""));
+            };
+            this.oops = function () {
+                if (!Text.includes(Cloze)) {
+                    console.log("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
+                    var newDialogOOPS = $("<dialog>");
+                    newDialogOOPS.attr("class", "dialog-box");
+                    newDialogOOPS.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
+                    $("#flashcard-jumbo").append(newDialogOOPS);
+                    $("#basic-section").hide();
+                    $("#cloze-section").hide();
+                    newDialogOOPS.show();
+                    setTimeout(function () {
+                        newDialogOOPS.hide();
+                        newDialogOOPS.empty();
+                        $("#basic-section").show();
+                        $("#cloze-section").show();
+                    }, 4000);
+                }
+            };
+        }
+        else{
+            return new ClozeCard(Text,Cloze);
+        }
     }
 
     //Actual Program
@@ -63,12 +75,10 @@ $(document).ready(function () {
             $("span[for='secondInput']").html("Value to Remove");
         }
     });
-    var firstInput = $("#firstInput").val().trim();
-    var secondInput = $("#secondInput").val().trim();
     $("#submitBTN").on("click", function (event) {
         //New methods to call on functions to create new cards
-        newBasicCard = new BasicCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
-        newClozeCard = new ClozeCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
+        newBasicCard = BasicCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
+        newClozeCard = ClozeCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         event.preventDefault();
         if(initialActionValue == null ){
             initialSubmitError("Please choose type of flashcards and try again");
@@ -124,7 +134,6 @@ $(document).ready(function () {
             if (i >= basicArray.length) {
                 i = 0;
             }
-            console.log(i);
             cardSide = "front";
             startCards(basicArray, i);
         }
@@ -133,7 +142,6 @@ $(document).ready(function () {
             if (i >= clozeArray.length) {
                 i = 0;
             }
-            console.log(i);
             cardSide = "front";
             startCards(clozeArray, i);
         }
@@ -164,7 +172,6 @@ $(document).ready(function () {
             return side;
         }
         else if (side === "back") {
-            console.log(side);
             $("#card-text").html(array[i].front);
             side = "front";
             return side;
