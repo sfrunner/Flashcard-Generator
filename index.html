@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <title>Flashcard Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -48,23 +49,13 @@
             </form>
     </div><!-- /.row -->
     <div class="row">
-        <div class="col-md-2">
-            <button id="initialSubmit" type="button" class="btn btn-primary">Submit</button>
+        <div class="col-md-12">
+            <div id="group-buttons" class="btn-group btn-group-justified" role="group" aria-label="Basic example">
+                <button id="submitBTN" type="button" class="btn btn-secondary">Submit Flashcard</button>
+                <button id="startBTN" type="button" class="btn btn-secondary">Start Flashcards</button>
+                <button id="nextBTN" type="button" class="btn btn-secondary">Next Flashcard</button>
+            </div>
         </div>
-        <div class="col-md-10"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <button id="startBTN" type="button" class="btn btn-primary">Start/Reset FlashCards</button>
-        </div>
-        <div class="col-md-10"></div>
-    </div>
-    <div class="row">
-
-        <div class="col-md-2">
-            <button id="nextBTN" type="button" class="btn btn-primary">Next</button>
-        </div>
-        <div class="col-md-10"></div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -77,13 +68,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" id="basic-section">
             <h4>Number of Basic Flashcards</h4>
-            <section id="number-basic"></section>
+            <section id="number-basic">0</section>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="cloze-section">
             <h4>Number of Cloze Flashcards</h4>
-            <section id="number-cloze"></section>
+            <section id="number-cloze">0</section>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>

@@ -3,3 +3,30 @@
     text-align: left;
     padding: 0% 0% 0% 0%;
 }
+
+#group-buttons{
+    width:100%;
+}
+
+#startBTN{
+    width: 33.34%;
+    border: 1px solid black;
+}
+
+#nextBTN{
+    width: 33.34%;
+    border: 1px solid black;
+}
+
+#submitBTN{
+    width: 33.39%;
+    border: 1px solid black;
+}
+
+#basic-section {
+    text-align: left;
+}
+
+#cloze-section {
+    text-align: right;
+}

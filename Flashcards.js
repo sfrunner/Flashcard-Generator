@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
 
 
-    $("#initialSubmit").on("click", function (event) {
+    $("#submitBTN").on("click", function (event) {
         newBasicCard = new BasicCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         newClozeCard = new ClozeCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         event.preventDefault();
