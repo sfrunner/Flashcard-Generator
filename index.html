@@ -13,80 +13,85 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10">
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle btn-lg" type="button" id="firstActiondd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle btn-lg" type="button" id="firstActiondd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     Card Type
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" id="firstActionddvalue" aria-labelledby="dropdownMenu1">
-                    <li><a href="#" class="initialAction">Basic FlashCards</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#" class="initialAction">Cloze-Deleted FlashCards</a></li>
-                </ul>
-            </div>
-            </div>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="firstActionddvalue" aria-labelledby="dropdownMenu1">
+                        <li>
+                            <a href="#" class="initialAction">Basic FlashCards</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#" class="initialAction">Cloze-Deleted FlashCards</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>    
+            <div class="col-md-8" id="required-error"></div>
             <div class="col-md-2">
                 <h3 id="card-selection"></h3>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <form>
-        <div class="col-md-6">
-            <div class="input-group">
-                <span class="input-group-addon" for="firstInput"></span>
-                <input id="firstInput"type="text" class="form-control" aria-label="..." value="">
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-        <div class="col-md-6">
-            <div class="input-group">
-                <span class="input-group-addon" for="secondInput"></span>
-                <input id="secondInput" type="text" class="form-control" aria-label="..." value="">
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+        <div class="row">
+            <form>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" for="firstInput"></span>
+                        <input id="firstInput" type="text" class="form-control" aria-label="..." value="">
+                    </div><!-- /input-group -->
+                </div><!-- /.col-md-6 -->
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" for="secondInput"></span>
+                        <input id="secondInput" type="text" class="form-control" aria-label="..." value="">
+                    </div><!-- /input-group -->
+                </div><!-- /.col-md-6 -->
             </form>
-    </div><!-- /.row -->
-    <div class="row">
-        <div class="col-md-12">
-            <div id="group-buttons" class="btn-group btn-group-justified" role="group" aria-label="Basic example">
-                <button id="submitBTN" type="button" class="btn btn-secondary">Submit Flashcard</button>
-                <button id="startBTN" type="button" class="btn btn-secondary">Start Flashcards</button>
-                <button id="nextBTN" type="button" class="btn btn-secondary">Next Flashcard</button>
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div id="group-buttons" class="btn-group btn-group-justified" role="group" aria-label="Basic example">
+                    <button id="submitBTN" type="button" class="btn btn-secondary">Submit Flashcard</button>
+                    <button id="startBTN" type="button" class="btn btn-secondary">Start Flashcards</button>
+                    <button id="nextBTN" type="button" class="btn btn-secondary">Next Flashcard</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12" id="flashcard-jumbo">
-            <div class="jumbotron">
-                <h1 class="display-3" id="card-text">This is your Flashcard!</h1>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button" id="flipBTN">Flip</a>
-                </p>
+        <div class="row">
+            <div class="col-md-12" id="flashcard-jumbo">
+                <div class="jumbotron">
+                    <h1 class="display-3" id="card-text">This is your Flashcard!</h1>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="#" role="button" id="flipBTN">Flip</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row" id="card-count">
-        <div class="col-md-6" id="basic-section">
-            <h4>Number of Basic Flashcards</h4>
-            <section id="number-basic">0</section>
-        </div>
-        <div class="col-md-6" id="cloze-section">
-            <h4>Number of Cloze Flashcards</h4>
-            <section id="number-cloze">0</section>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron">
-                <h2>Instructions</h2>
-                <p>There are two types of flashcards illustrated below. To submit a card, please choose the correct type of card from the dropdown menu. The selection will be illustrated to the right of below the dropdown menu. Type in your information and click on Submit. The number of cards for a specific type will appear at the bottom of your screen.</p>
-                <p>Basic flashcards, which have a front ("Who was the first president of the United States?"), and a back ("George Washington").</p>
-                <p>Cloze-Deleted flashcards, which present partial text ("... was the first president of the United States."), and the full text when the user requests it ("George Washington was the first president of the United States.")<br>**Please note that you will receive an error for the Cloze-Deleted flashcard submission if the partial text you want to remove is not contained in the full text**</p>
-                <p>Click on "Start/Reset Flashcards" with the dropdown menu on the type of flashcards that you want to use to begin or reset the specific deck. Click on Next to move to the next card, and click Flip to flip it over and see the answer.</p>
+        <div class="row" id="card-count">
+            <div class="col-md-6" id="basic-section">
+                <h4>Number of Basic Flashcards</h4>
+                <section id="number-basic">0</section>
+            </div>
+            <div class="col-md-6" id="cloze-section">
+                <h4>Number of Cloze Flashcards</h4>
+                <section id="number-cloze">0</section>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h2>Instructions</h2>
+                    <p>There are two types of flashcards illustrated below. To submit a card, please choose the correct type of card from the dropdown menu. The selection will be illustrated to the right or below the dropdown menu. Type in your information and click on Submit. The number of cards for a specific type will appear at the bottom of your screen.</p>
+                    <p>Basic flashcards, which have a front ("Who was the first president of the United States?"), and a back ("George Washington").</p>
+                    <p>Cloze-Deleted flashcards, which present partial text ("... was the first president of the United States."), and the full text when the user requests it ("George Washington was the first president of the United States.")<br>**Please note that you will receive an error for the Cloze-Deleted flashcard submission if the partial text you want to remove is not contained in the full text**</p>
+                    <p>Click on "Start/Reset Flashcards", with the dropdown menu on the type of flashcards that you want to use, to begin or reset the specific deck. Click on Next to move to the next card, and click Flip to flip it over and see the answer.</p>
+                </div>
+            </div>
+        </div>
+    </div>   
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

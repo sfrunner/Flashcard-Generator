@@ -4,6 +4,10 @@
     padding: 0% 0% 0% 0%;
 }
 
+#card-selection{
+    text-align: right;
+}
+
 #group-buttons{
     width:100%;
 }
@@ -11,16 +15,19 @@
 #startBTN{
     width: 33.34%;
     border: 1px solid black;
+    text-align: center;
 }
 
 #nextBTN{
     width: 33.34%;
     border: 1px solid black;
+    text-align: center;
 }
 
 #submitBTN{
     width: 33.39%;
     border: 1px solid black;
+    text-align: center;
 }
 
 #basic-section {
@@ -31,7 +38,7 @@
     text-align: right;
 }
 
-#dialog-box{
+.dialog-box{
     position:relative;
     z-index:1;
 }

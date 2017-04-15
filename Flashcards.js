@@ -24,16 +24,16 @@ $(document).ready(function () {
         this.oops = function () {
             if (!Text.includes(Cloze)) {
                 console.log("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-                var newDialog = $("<dialog>");
-                newDialog.attr("id", "dialog-box");
-                newDialog.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
-                $("#flashcard-jumbo").append(newDialog);
+                var newDialogOOPS = $("<dialog>");
+                newDialogOOPS.attr("class", "dialog-box");
+                newDialogOOPS.html("Error! " + Text + " does not contain the word " + Cloze + " to remove. Please try again");
+                $("#flashcard-jumbo").append(newDialogOOPS);
                 $("#basic-section").hide();
                 $("#cloze-section").hide();
-                newDialog.show();
+                newDialogOOPS.show();
                 setTimeout(function () {
-                    newDialog.hide();
-                    newDialog.empty();
+                    newDialogOOPS.hide();
+                    newDialogOOPS.empty();
                     $("#basic-section").show();
                     $("#cloze-section").show();
                 }, 4000);
@@ -63,13 +63,21 @@ $(document).ready(function () {
             $("span[for='secondInput']").html("Value to Remove");
         }
     });
-
+    var firstInput = $("#firstInput").val().trim();
+    var secondInput = $("#secondInput").val().trim();
     $("#submitBTN").on("click", function (event) {
         //New methods to call on functions to create new cards
         newBasicCard = new BasicCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         newClozeCard = new ClozeCard($("#firstInput").val().trim(), $("#secondInput").val().trim());
         event.preventDefault();
-        if (initialActionValue === "Basic FlashCards") {
+        if(initialActionValue == null ){
+            initialSubmitError("Please choose type of flashcards and try again");
+        }
+        else if($("#firstInput").val().trim() == "" || $("#secondInput").val().trim() == "")
+        {
+            initialSubmitError("Both text fields are required. Please type in a value for both fields and try again");
+        }
+        else if (initialActionValue === "Basic FlashCards") {
             basicArray.push(newBasicCard);
         }
         else if (initialActionValue === "Cloze-Deleted FlashCards") {
@@ -131,6 +139,18 @@ $(document).ready(function () {
         }
     });
 
+    //Function to carry initialSubmit Error Handling
+    function initialSubmitError(response){
+        var newDialog = $("<dialog>");
+            newDialog.attr("class","dialog-box");
+            newDialog.html(response);
+            $("#required-error").append(newDialog);
+            newDialog.show();
+            setTimeout(function () {
+                newDialog.hide();
+                newDialog.empty();
+            }, 4000);       
+    }
     //Function for starting the Flashcards
     function startCards(array, i) {
         $("#card-text").html(array[i].front)
