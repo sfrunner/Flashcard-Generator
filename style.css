@@ -13,19 +13,24 @@
 }
 
 #startBTN{
-    width: 33.34%;
+    width: 25%;
     border: 1px solid black;
     text-align: center;
 }
 
 #nextBTN{
-    width: 33.34%;
+    width: 25%;
     border: 1px solid black;
     text-align: center;
 }
 
 #submitBTN{
-    width: 33.39%;
+    width: 25%;
+    border: 1px solid black;
+    text-align: center;
+}
+#clearBTN{
+    width: 25%;
     border: 1px solid black;
     text-align: center;
 }

@@ -147,6 +147,18 @@ $(document).ready(function () {
         }
     });
 
+    //Clear Selected Flashcards
+    $("#clearBTN").on("click", function(event){
+        if(initialActionValue === "Basic FlashCards"){
+            basicArray = [];
+            $("#number-basic").html(basicArray.length);
+        }
+        else{
+            clozeArray = [];
+            $("#number-cloze").html(clozeArray.length);
+        }
+    });
+
     //Function to carry initialSubmit Error Handling
     function initialSubmitError(response){
         var newDialog = $("<dialog>");
